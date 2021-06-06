@@ -31,12 +31,6 @@ require_once 'partials/header.php';
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarTogglerDemo01">
-                    <select class="form" name="" id="">
-                        <option value="">Select</option>
-                        <option value="">7 Jours avant</option>
-                        <option value="">15 Jours avant</option>
-                        <option value="">ce Mois avant</option>
-                    </select>
                     <form method="post" action="" class="form-inline justify-content-start d-flex mr-auto mt-2 mt-lg-0">
                         <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Recherche"
                             aria-label="Search">&nbsp;&nbsp;
@@ -62,7 +56,7 @@ echo "$total_records ";
     <div class="table-responsive container">
         <table class="table bg-light table-stripped caption-top">
 
-            <thead class="alert-danger">
+            <thead class="bg-danger">
                 <tr>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
@@ -79,6 +73,7 @@ echo "$total_records ";
 
 
             <tbody>
+
                 <?php if(isset($_POST['recherche'])): ?>
                 <?php
                 $keyword = $_POST['keyword'];
@@ -154,9 +149,10 @@ echo "$total_records ";
                             class="text-danger" href="delete_demande_resp.php?id=<?= $demande->id ?>"><i
                                 class="fas fa-1x fa-minus-circle"></i></a>
                         &nbsp;
-                        <a class="text-info" target="_blank" href=" <?php
+                        <a class="text-info" onClick="updatedStatut('<?=$demande->id?>')" target="_blank" href=" <?php
                         if($demande->type_document=="inscription"){
-                        echo "document/att_inscription.php?cnedemande=$demande->cne ";}
+                        echo "document/att_inscription.php?cnedemande=$demande->cne ";
+                    }
                         else if($demande->type_document=="scolarite"){ echo "document/att_scolarite.php?cnedemande=$demande->cne" ;} else
                             if($demande->type_document=="releves"){
                             echo "document/releves.php?cnedemande=$demande->cne";}
