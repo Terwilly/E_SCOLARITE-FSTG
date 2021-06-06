@@ -27,7 +27,7 @@ require_once 'partials/header.php';?>
         </div>
     </header>
     <div class="table-responsive container">
-        <table class="table bg-light table-stripped caption-top">
+        <table class="table bg-light table-striped table-hover caption-top">
             <caption class=" text-center text-light display-5 ">Ma liste de demande</caption>
             <thead>
                 <tr>
@@ -47,15 +47,15 @@ require_once 'partials/header.php';?>
             <tbody>
                 <?php foreach($demandes as $demande): ?>
                 <tr>
-                    <td><?= $demande->nom?></td>
-                    <td><?= $demande->prenom?></td>
+                    <td><strong><?= $demande->nom?></strong></td>
+                    <td><strong><?= $demande->prenom?></strong></td>
                     <td><?= $demande->cne; ?></td>
                     <td><?= $demande->filliere; ?></td>
                     <td><?= $demande->type_document; ?></td>
                     <td><?= $demande->sem_demande; ?></td>
                     <td><?= $demande->annee_sco_demande; ?></td>
                     <td><?= dateToFrench($demande->date_demande, "j F Y"); ?></td>
-                    <td><?= $demande->statut_demande; ?> </td>
+                    <td><strong><?= $demande->statut_demande; ?></strong> </td>
                     <td>
                         <a onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"
                             class="text-danger" href="delete_demande.php?id=<?= $demande->id ?>"><i
