@@ -110,7 +110,7 @@ echo "$total_records ";
                             class="text-danger" href="delete_demande_resp.php?id=<?= $row->id ?>"><i
                                 class="fas fa-1x fa-minus-circle"></i></a>
                         &nbsp;
-                        <a class="text-info" target="_blank" href=" <?php
+                        <a class="text-info" onclick='updatedStatut("<?=$demande->id?>");' target="_blank" href=" <?php
                         if($row->type_document=="inscription"){
                         echo "document/att_inscription.php?cnedemande=$row->cne ";}
                         else if($row->type_document=="scolarite"){ echo "document/att_scolarite.php?cnedemande=$row->cne" ;} else
@@ -149,7 +149,7 @@ echo "$total_records ";
                             class="text-danger" href="delete_demande_resp.php?id=<?= $demande->id ?>"><i
                                 class="fas fa-1x fa-minus-circle"></i></a>
                         &nbsp;
-                        <a class="text-info" onClick="updatedStatut('<?=$demande->id?>')" target="_blank" href=" <?php
+                        <a class="text-info" onclick='updatedStatut("<?=$demande->id?>");' target="_blank" href=" <?php
                         if($demande->type_document=="inscription"){
                         echo "document/att_inscription.php?cnedemande=$demande->cne ";
                     }
@@ -166,6 +166,18 @@ echo "$total_records ";
     </div>
 
 </main>
+<script>
+function updatedStatut(id) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log("Votre document est en cours de traitement");
+        }
+    };
+    xmlhttp.open("GET", "update.php?id=" + id, true);
+    xmlhttp.send();
+}
+</script>
 
 
 <?php require_once 'partials/footer.php';?>

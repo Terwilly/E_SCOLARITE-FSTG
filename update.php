@@ -1,4 +1,12 @@
 <?php
+session_start();
+include_once "connect.php";
+include_once 'partials/functions.php';
+if(!isset($_SESSION["identifiant"])){
+    header("Location:index.php");
+}
+?>
+<?php
 if(isset($_GET['id'])&& !empty($_GET['id'])){
     $id=$_GET['id'];
     $statut_demande="Prêt";
@@ -11,8 +19,9 @@ if(isset($_GET['id'])&& !empty($_GET['id'])){
     else{
         echo "No data update";
     }
-    header("Location: update.php");
     
 }
 
 ?>
+
+<?php require_once 'partials/footer.php';?>
