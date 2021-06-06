@@ -55,19 +55,7 @@ require_once 'partials/header.php';?>
                     <td><?= $demande->sem_demande; ?></td>
                     <td><?= $demande->annee_sco_demande; ?></td>
                     <td><?= dateToFrench($demande->date_demande, "j F Y"); ?></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Choix de Statut
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Bien Récu</a>
-                                <a class="dropdown-item" href="#">Traitement en cours</a>
-                                <a class="dropdown-item" href="#">Pret</a>
-                            </div>
-                        </div>
-                    </td>
+                    <td><?= $demande->statut_demande; ?> </td>
                     <td>
                         <a onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"
                             class="text-danger" href="delete_demande.php?id=<?= $demande->id ?>"><i
