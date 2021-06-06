@@ -36,7 +36,6 @@ while($demandes = $statement->fetch()){
     $cne_dem =  $demandes['cne'];
     $annee_sco_dem=$demandes['annee_sco_demande'];
     $diplome_dem=$demandes['filliere'];
-    
 }
 
 $lastname =strtoupper($lastname_etap);

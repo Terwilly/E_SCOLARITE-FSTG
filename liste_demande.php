@@ -54,9 +54,8 @@ echo "$total_records ";
 ?> </span></b></p>
     </div>
     <div class="table-responsive container">
-        <table class="table bg-light table-stripped caption-top">
-
-            <thead class="bg-danger">
+        <table class="table bg-light table-striped caption-top">
+            <thead>
                 <tr>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
@@ -71,7 +70,6 @@ echo "$total_records ";
                 </tr>
             </thead>
 
-
             <tbody>
 
                 <?php if(isset($_POST['recherche'])): ?>
@@ -81,7 +79,6 @@ echo "$total_records ";
                 $query->execute(); 
                 $rows = $query->fetchAll(PDO::FETCH_OBJ);
                 ?>
-
                 <?php foreach ($rows as $row) : ?>
                 <tr>
                     <td><?= $row->nom?></td>
