@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once "connect.php";
-include_once 'partials/functions.php';
 if(!isset($_SESSION["identifiant"])){
     header("Location:index.php");
 }
@@ -17,13 +16,15 @@ $demandes = $statement->fetchAll(PDO::FETCH_OBJ);
 
 <?php
 $title = "Identification";
-require_once 'partials/header.php';
-?>
+require_once 'partials/header.php';?>
 <main>
     <header>
         <h1 class="header">E-SCOLARITE FSTG
             <?php echo annee_scolaire_actuelle();?>
         </h1>
+        <!-- <div class="text-center">
+            <a class="btn btn-danger mt-2" href="logout.php">Déconnecter</a>
+        </div> -->
         <div>
             <nav class="navbar container navbar-expand-lg navbar-light bg-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -37,11 +38,10 @@ require_once 'partials/header.php';
                         <option value="">15 Jours avant</option>
                         <option value="">ce Mois avant</option>
                     </select>
-                    <form method="post" action="" class="form-inline justify-content-start d-flex mr-auto mt-2 mt-lg-0">
-                        <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Recherche"
+                    <form class="form-inline justify-content-start d-flex mr-auto mt-2 mt-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search"
                             aria-label="Search">&nbsp;&nbsp;
-                        <input type="submit" class="btn form-inline btn-outline-success my-2 my-sm-0" value="Filtrer"
-                            name="recherche">
+                        <a class="btn form-inline btn-outline-success my-2 my-sm-0" type="submit">Search</a>
                     </form>
                     <div class="form-inline my-2 my-lg-0">
                         <a class="btn btn-danger" href="logout.php" type="submit">Déconnecter</a>
@@ -50,19 +50,16 @@ require_once 'partials/header.php';
             </nav>
         </div>
     </header>
-    <div class="text-center text-light display-5">Liste de demandes de Documents</div>
-    <div class="container" align="right">
-        <p> <b>Total: <span id="total_records">
-                    <?php $sql_total ="SELECT * FROM demande";
-$smtm = $db->query($sql_total);
-$total_records = $smtm->rowCount();
-echo "$total_records ";
-?> </span></b></p>
+    <div align="right">
+        <p> <b>Total: <span id="total_records"></span></b></p>
     </div>
+
+
     <div class="table-responsive container">
         <table class="table bg-light table-stripped caption-top">
-
-            <thead class="alert-danger">
+            <caption class=" text-center text-light display-5 ">Liste de demandes de Documents
+            </caption>
+            <thead>
                 <tr>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
@@ -77,55 +74,7 @@ echo "$total_records ";
                 </tr>
             </thead>
 
-
             <tbody>
-                <?php if(isset($_POST['recherche'])): ?>
-                <?php
-                $keyword = $_POST['keyword'];
-                $query = $db->prepare("SELECT * FROM demande WHERE nom LIKE '$keyword' or prenom LIKE '$keyword' or cne LIKE '$keyword'");
-                $query->execute(); 
-                $rows = $query->fetchAll(PDO::FETCH_OBJ);
-                ?>
-
-                <?php foreach ($rows as $row) : ?>
-                <tr>
-                    <td><?= $row->nom?></td>
-                    <td><?= $row->prenom?></td>
-                    <td><?= $row->cne; ?></td>
-                    <td><?= $row->filliere; ?></td>
-                    <td><?= $row->type_document; ?></td>
-                    <td><?= $row->sem_demande; ?></td>
-                    <td><?= $row->annee_sco_demande; ?></td>
-                    <td><?= dateToFrench($row->date_demande, "j F Y"); ?></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Choix de Statut
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Envoyer</a>
-                                <a class="dropdown-item" href="#">Traitement en cours</a>
-                                <a class="dropdown-item" href="#">Pret</a>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <a onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"
-                            class="text-danger" href="delete_demande_resp.php?id=<?= $row->id ?>"><i
-                                class="fas fa-1x fa-minus-circle"></i></a>
-                        &nbsp;
-                        <a class="text-info" target="_blank" href=" <?php
-                        if($row->type_document=="inscription"){
-                        echo "document/att_inscription.php?cnedemande=$row->cne ";}
-                        else if($row->type_document=="scolarite"){ echo "document/att_scolarite.php?cnedemande=$row->cne" ;} else
-                            if($row->type_document=="releves"){
-                            echo "document/releves.php?cnedemande=$row->cne";}
-                            ?>"><i class="fas fa-1x fa-print"></i></a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-                <?php else: ?>
                 <?php foreach($demandes as $demande): ?>
                 <tr>
                     <td><?= $demande->nom?></td>
@@ -164,7 +113,6 @@ echo "$total_records ";
                     </td>
                 </tr>
                 <?php endforeach; ?>
-                <?php endif; ?>
             </tbody>
         </table>
     </div>

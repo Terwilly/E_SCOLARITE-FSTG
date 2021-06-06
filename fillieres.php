@@ -42,7 +42,8 @@ require_once 'partials/header.php';?>
                     </div>
                     <div class="form-group">
                         <label for="">Numéro CNE</label>
-                        <input class="form-control" name="cne" type="text" required value="<?php echo "$codnneind" ?>">
+                        <input class="form-control" name="cne" type="text" readonly required
+                            value="<?php echo "$codnneind" ?>">
                     </div>
                     <div class="form-group">
                         <label for="">Date de naissance</label>
