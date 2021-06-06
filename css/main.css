@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #053726;
+}
+body {
+  background-image: linear-gradient(
+    to right bottom,
+    #053726,
+    #0e5e4d,
+    #13887b,
+    #11b4b0,
+    #12e2eb
+  );
+
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}

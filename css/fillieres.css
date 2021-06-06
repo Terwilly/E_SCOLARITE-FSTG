@@ -1,0 +1,11 @@
+.box {
+  max-width: 70%;
+  margin: 40px auto;
+}
+
+.cacheSem,
+.data {
+  background-color: rgb(2, 212, 107);
+  display: none;
+  border-radius: 20px;
+}

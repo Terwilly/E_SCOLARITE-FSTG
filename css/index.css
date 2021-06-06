@@ -1,0 +1,68 @@
+main header {
+  background-color: #00daff;
+}
+
+main header h1 {
+  text-align: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px 30px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black, 0 0 25px #00daff, 0 0 5px darkblue;
+}
+
+.identification {
+  max-width: 450px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-items: center;
+  margin: auto;
+  /* margin-top: 100px; */
+}
+
+.identification h2 {
+  text-align: center;
+  color: white;
+  display: inline-block;
+  width: 450px;
+  background-color: rgba(33, 175, 168, 0.432);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.btn-sumit {
+  display: inline-block;
+  width: 450px;
+  margin-top: 15px;
+  background-color: lightseagreen;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #00daff;
+}
+
+div > img {
+  width: 100px;
+  margin-bottom: 2px;
+  display: inline-block;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.img {
+  text-align: center;
+  padding: 10px;
+}
+
+form + p {
+  margin-top: 15px;
+  font-size: 15px;
+  text-align: center;
+  text-transform: capitalize;
+  color: rgb(151, 55, 0);
+  padding: 3px;
+  background-color: rgba(209, 209, 209, 0.329);
+  border-radius: 10px;
+}
