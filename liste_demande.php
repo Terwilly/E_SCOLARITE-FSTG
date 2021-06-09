@@ -46,15 +46,16 @@ require_once 'partials/header.php';
     </header>
     <div class="text-center text-light display-5">Liste de demandes de Documents</div>
     <div class="container" align="right">
-        <p> <b>Total: <span id="total_records">
+        <p class="text-white"> <b>Total: <span class="bg-danger display-6 p-2 rounded-circle  text-white"
+                    id="total_records">
                     <?php $sql_total ="SELECT * FROM demande";
-$smtm = $db->query($sql_total);
-$total_records = $smtm->rowCount();
-echo "$total_records ";
-?> </span></b></p>
+                    $smtm = $db->query($sql_total);
+                    $total_records = $smtm->rowCount();
+                    echo "$total_records";
+                    ?> </span></b></p>
     </div>
     <div class="table-responsive container">
-        <table class="table bg-light table-striped table-hover caption-top">
+        <table class="table rounded bg-light table-striped table-hover caption-top">
             <thead>
                 <tr>
                     <th scope="col">Nom</th>

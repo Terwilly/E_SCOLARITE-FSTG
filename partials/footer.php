@@ -65,6 +65,23 @@ unset($_SESSION['send']);
 }
 ?>
     </script>
+    <script>
+<?php 
+if($_SESSION['nosend']){
+    ?>
+swal({
+    title: "DESOLE",
+    text: "Vous pouvez plus envoyé de demande ! ",
+    icon: "warning",
+    button: "Continue!",
+});
+
+<?php
+unset($_SESSION['nosend']);
+}
+?>
+    </script>
+
     </body>
 
     </html>

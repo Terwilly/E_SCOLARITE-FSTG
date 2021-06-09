@@ -17,6 +17,7 @@ $demandes = $statement->fetchAll(PDO::FETCH_OBJ);
 $title = "Demande Envoye";
 require_once 'partials/header.php';?>
 
+
 <main>
     <header>
         <h1 class="header">E-SCOLARITE FSTG <?php echo annee_scolaire_actuelle();?>
@@ -27,7 +28,7 @@ require_once 'partials/header.php';?>
         </div>
     </header>
     <div class="table-responsive container">
-        <table class="table bg-light table-striped table-hover caption-top">
+        <table class="table rounded bg-light table-striped table-hover caption-top">
             <caption class=" text-center text-light display-5 ">Ma liste de demande</caption>
             <thead>
                 <tr>

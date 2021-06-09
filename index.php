@@ -55,7 +55,7 @@ $title = "Identification";
                 <button type="submit" name="login" class=" btn btn-primary btn-lg btn-block">Valider</button>
             </div>
         </form>
-        <p>*Vous trouvez votre Numéro Apogée aprés votre identification</p>
+        <p>*Vous Trouverez votre Numéro Apogée aprés votre identification</p>
     </section>
 
 </main>

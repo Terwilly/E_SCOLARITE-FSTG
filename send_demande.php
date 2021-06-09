@@ -28,10 +28,23 @@ $sql = 'INSERT INTO demande(nom,prenom,cne,filliere,sem_demande,type_document,da
 VALUES(:nom,:prenom,:cne,:filliere,:sem_demande,:type_document,sysdate(),:annee_sco_demande)';
 $statement = $db->prepare($sql);
 
-if ($statement->execute([':nom' => $nom, ':prenom' => $prenom, ':cne' => $cne, ':filliere' => $filliere,':sem_demande'=>
+$sqlquery = 'SELECT count(*) as total FROM demande WHERE cne=:cne AND type_document=:type_document AND annee_sco_demande=:annee_sco_demande';
+$statementes = $db->prepare($sqlquery);
+$statementes->execute([':cne'=>$cne,':type_document'=>$type_document,':annee_sco_demande'=>$andemande]);
+
+$count = $statementes->fetchAll();
+
+if($count<=3){
+    if ($statement->execute([':nom' => $nom, ':prenom' => $prenom, ':cne' => $cne, ':filliere' => $filliere,':sem_demande'=>
 $semestre, ':type_document' => $typedocument, ':annee_sco_demande' => $andemande])){
 $_SESSION['send'] = "Votre demande a bien ete envoye";
-// echo "<center><div class="alert alert-danger">$message</div></center>";
 header("Location: affichage_list_demande.php");
+}   
 }
+else
+{
+$_SESSION['nosend'] = "Votre demande ";
+header("Location: affichage_list_demande.php");   
+}
+
 ?>
