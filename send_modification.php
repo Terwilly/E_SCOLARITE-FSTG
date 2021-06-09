@@ -27,13 +27,13 @@ $andemande = $_POST['andemande'];
 $sql = 'UPDATE demande SET nom=:nom, prenom=:prenom, cne=:cne, filliere=:filliere, sem_demande=:sem_demande, type_document=:type_document,date_demande=SYSDATE(),annee_sco_demande=:annee_sco_demande WHERE id=:id';
 $statement = $db->prepare($sql);
 
-$sqlquery = 'SELECT count(*) FROM demande WHERE cne=:cne and type_document=:type_document and annee_sco_demande=:annee_sco_demande';
+$sqlquery = 'SELECT count(*) as total FROM demande WHERE cne=:cne and type_document=:type_document and annee_sco_demande=:annee_sco_demande';
 $statementes = $db->prepare($sqlquery);
-$statementes->execute([':cne'=>$cne,':type_document'=>$type_document,':annee_sco_demande'=>$andemande]);
+$statementes->execute([':cne'=>$cne,':type_document'=>$typedocument,':annee_sco_demande'=>$andemande]);
 
 $count = $statementes->fetch();
 
-if($count <=3){
+if($count['total'] <3){
     if ($statement->execute([':nom' => $nom, ':prenom' => $prenom, ':cne' => $cne, ':filliere' => $filliere,':sem_demande'=>
 $semestre, ':type_document' => $typedocument, ':annee_sco_demande' => $andemande])){
 $_SESSION['send'] = "Votre demande a bien ete envoye";
