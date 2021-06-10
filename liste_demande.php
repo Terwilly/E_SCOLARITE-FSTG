@@ -9,7 +9,19 @@ if(!isset($_SESSION["identifiant"])){
 <?php
 include "connect.php";
 require_once 'partials/functions.php';
-$sql = "SELECT * from demande ORDER BY date_demande DESC";
+$currentPage = (int)($_GET['page'] ?? 1);
+if($currentPage <= 0){
+    throw new Exception('Numero de page invalide');
+}
+$count =(int)$db->query("SELECT COUNT(id) FROM demande")->fetch(PDO::FETCH_NUM)[0];
+$perPage = 12;
+$pages = ceil($count / $perPage);
+if($currentPage > $pages){
+    throw new Exception('Cette page n\'existe pas');
+}
+
+$offset = $perPage * ($currentPage - 1);
+$sql = "SELECT * from demande ORDER BY date_demande DESC LIMIT $perPage OFFSET $offset";
 $statement = $db->prepare($sql);
 $statement->execute();
 $demandes = $statement->fetchAll(PDO::FETCH_OBJ);
@@ -46,7 +58,7 @@ require_once 'partials/header.php';
     </header>
     <div class="text-center text-light display-5">Liste de demandes de Documents</div>
     <div class="container" align="right">
-        <p class="text-white"> <b>Total: <span class="bg-danger display-6 p-2 rounded-circle  text-white"
+        <p class="text-white"> <b>Total: <span class="bg-danger display-7 p-2 rounded-circle  text-white"
                     id="total_records">
                     <?php $sql_total ="SELECT * FROM demande";
                     $smtm = $db->query($sql_total);
@@ -137,6 +149,15 @@ require_once 'partials/header.php';
                 <?php endif; ?>
             </tbody>
         </table>
+    </div>
+    <div class="container d-flex justify-content-between my-4">
+        <?php if( $currentPage > 1 ): ?>
+        <a href="liste_demande.php?page=<?=$currentPage-1?>" class="btn btn-primary"> &laquo; Page Précedente</a>
+        <?php endif; ?>
+        <?php if( $currentPage < $pages ): ?>
+        <a href="liste_demande.php?page=<?=$currentPage+1?>" class="btn btn-primary ml-auto"> Page Suivante
+            &raquo;</a>
+        <?php endif; ?>
     </div>
 
 </main>

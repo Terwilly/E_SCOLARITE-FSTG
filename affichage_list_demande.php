@@ -11,13 +11,14 @@ $statement = $db->prepare($sql);
 $statement->execute(array($_SESSION['cne']));
 $demandes = $statement->fetchAll(PDO::FETCH_OBJ);
 ?>
+<!-- End affichage -->
+
+
 
 <!-- End affichage -->
 <?php
 $title = "Demande Envoye";
 require_once 'partials/header.php';?>
-
-
 <main>
     <header>
         <h1 class="header">E-SCOLARITE FSTG <?php echo annee_scolaire_actuelle();?>
@@ -57,14 +58,17 @@ require_once 'partials/header.php';?>
                     <td><?= $demande->annee_sco_demande; ?></td>
                     <td><?= dateToFrench($demande->date_demande, "j F Y"); ?></td>
                     <td><strong><?= $demande->statut_demande; ?></strong> </td>
-                    <td>
-                        <a onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"
+                    <?php if($demande->statut_demande=="Prêt"):?>
+                    <td> <strong><em class="text-warning"><i class="fas fa-ban"></i> </em> </strong> </td>
+                    <?php else:?> <td>
+                        <a id="disabl" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"
                             class="text-danger" href="delete_demande.php?id=<?= $demande->id ?>"><i
                                 class="fas fa-1x fa-minus-circle"></i></a>
                         &nbsp;
                         <a class="text-info" href="update_demande.php?id=<?= $demande->id ?>"><i
                                 class="fas fa-edit"></i></a>
                     </td>
+                    <?php endif;?>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
