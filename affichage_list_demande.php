@@ -30,7 +30,7 @@ require_once 'partials/header.php';?>
     </header>
     <div class="table-responsive container">
         <table class="table rounded bg-light table-striped table-hover caption-top">
-            <caption class=" text-center text-light display-5 ">Ma liste de demande</caption>
+            <caption class=" text-center text-light display-5 ">Ma liste de demandes</caption>
             <thead>
                 <tr>
                     <th scope="col">Nom</th>
@@ -59,7 +59,8 @@ require_once 'partials/header.php';?>
                     <td><?= dateToFrench($demande->date_demande, "j F Y"); ?></td>
                     <td><strong><?= $demande->statut_demande; ?></strong> </td>
                     <?php if($demande->statut_demande=="Prêt"):?>
-                    <td> <strong><em class="text-warning"><i class="fas fa-ban"></i> </em> </strong> </td>
+                    <td> <strong><em class="text-warning"><i class="fas fa-2x fa-ban"></i>
+                            </em></strong> </td>
                     <?php else:?> <td>
                         <a id="disabl" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"
                             class="text-danger" href="delete_demande.php?id=<?= $demande->id ?>"><i
@@ -74,8 +75,8 @@ require_once 'partials/header.php';?>
             </tbody>
         </table>
     </div>
-    <div class="container float-right ">
-        <button class="btn btn-primary"> <a href="fillieres.php">Faire une nouvelle demande</a> </button>
+    <div class="container">
+        <a href="fillieres.php" class="btn btn-primary">Faire une nouvelle demande</a>
     </div>
     <br>
     <br>

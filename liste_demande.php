@@ -152,10 +152,11 @@ require_once 'partials/header.php';
     </div>
     <div class="container d-flex justify-content-between my-4">
         <?php if( $currentPage > 1 ): ?>
-        <a href="liste_demande.php?page=<?=$currentPage-1?>" class="btn btn-primary"> &laquo; Page Précedente</a>
+        <a href="liste_demande.php?page=<?=$currentPage-1?>" class="btn btn-primary ml-auto"> &laquo; Page
+            Précedente</a>
         <?php endif; ?>
         <?php if( $currentPage < $pages ): ?>
-        <a href="liste_demande.php?page=<?=$currentPage+1?>" class="btn btn-primary ml-auto"> Page Suivante
+        <a href="liste_demande.php?page=<?=$currentPage+1?>" class="btn btn-primary"> Page Suivante
             &raquo;</a>
         <?php endif; ?>
     </div>
