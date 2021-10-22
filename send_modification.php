@@ -34,9 +34,8 @@ $statementes->execute([':cne'=>$cne,':type_document'=>$typedocument,':annee_sco_
 $count = $statementes->fetch();
 
 if($count['total'] <3){
-    if ($statement->execute([':nom' => $nom, ':prenom' => $prenom, ':cne' => $cne, ':filliere' => $filliere,':sem_demande'=>
-$semestre, ':type_document' => $typedocument, ':annee_sco_demande' => $andemande])){
-$_SESSION['send'] = "Votre demande a bien ete envoye";
+    if ($statement->execute([':nom' => $nom, ':prenom' => $prenom, ':cne' => $cne, ':filliere' => $filliere,':sem_demande'=>$semestre, ':type_document' => $typedocument, ':annee_sco_demande' => $andemande,':id'=>$_GET['id']])){
+$_SESSION['update'] = "Votre demande a bien été modifié";
 header("Location: affichage_list_demande.php");
 }
 }
